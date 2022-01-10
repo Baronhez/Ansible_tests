@@ -1,0 +1,26 @@
+---
+
+# Register variable
+- name: Check if file existes
+  stat:
+    path: "/home/baronhez/nginx/registers/motd"
+    register: motd_file
+# Debug
+
+- name: Debug if file exists
+  debug:
+    msg: "File exists!"
+  when: motd_file.stat.exists == True
+
+- name: Debug if file not exists
+  debug:
+    msg: "File not exists!"
+  when: motd_file.stat.exists == False  
+
+# Create file if not exists
+- name: Create file
+  file:
+    path: "/home/baronhez/nginx/registers/motd"
+    state: touch
+  when: motd_file.stat.exists == False  
+  

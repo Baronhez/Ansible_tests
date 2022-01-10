@@ -1,0 +1,13 @@
+---
+# Nginx playbook for testing
+- hosts: webserver
+  remote_user: 'root'
+  roles: 
+  - role: nginx_install
+  - role: register_variable
+  - role: condiciones
+    #- role: forzar_fallo
+  - role: ignorar_fallo
+  - role: variable_template
+  - role: bucle_template
+

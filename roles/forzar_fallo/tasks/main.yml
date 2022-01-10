@@ -1,0 +1,9 @@
+---
+
+# Forzar fallo
+
+- name: Check if file exists and fail if not
+  stat:
+    path: "/home/baronhez/nginx/registers/motd"
+  register: motd_file
+  failed_when: mod_file.stat.exists == False

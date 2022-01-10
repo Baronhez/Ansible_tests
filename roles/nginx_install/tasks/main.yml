@@ -1,0 +1,18 @@
+---
+
+# Tasks for role nginx_install
+# This role install Nginx
+- name: Update
+  apt:
+    name: '*'
+    state: latest
+- name: Install nginx
+  apt:
+    name: 'nginx'
+    state: present
+  when: ansible_os_family == "Ubuntu"
+- name: Start and enable service Nginx
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
